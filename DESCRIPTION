@@ -1,11 +1,14 @@
 Package: tidyrabbit
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Title: Tidy up Your Carret Work.
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Rahul", "Sangone", email = "rsangole@something.com", role = c("cre", "aut")),
+    person("Roel M.", "Hogervorst", email ="hogervorst.rm@gmail.com", role =  "aut")
+    )
+Description: Set of wrappers that make it easier to work with caret in dataframe.
+    Keep all the elements together and compare models without creating hundreds of
+    objects. 
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
