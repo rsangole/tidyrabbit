@@ -38,6 +38,15 @@ create_starterframe <- function(transformations = list(),
     if(!is.null(y)){
         result$y <- rep(as.data.frame(y),nrow(result))
     }
-
+    if(!is.null(.suffix)){
+        print("suffix")
+        result <- result %>% mutate(
+            train.x = map2(train.x, .suffix,  ~change_colnames(.x,.y, "suf")))
+    }
+    if(!is.null(.prefix)){
+        print("pre")
+        result <- result %>% mutate(
+            train.x = map2(train.x,.prefix, ~change_colnames(.x,.y, "pre")))
+    }
     result
 }
