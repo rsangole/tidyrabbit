@@ -1,6 +1,6 @@
 ---
 title: "Tidy Rabbit basic idea"
-author: "Roel M. Hogervorst"
+author: "Roel M. Hogervorst & Rahul Sangole"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
