@@ -12,3 +12,6 @@ Description: Set of wrappers that make it easier to work with caret in dataframe
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
