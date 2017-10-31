@@ -1,0 +1,83 @@
+---
+title: "Tidy Rabbit basic idea"
+author: "Roel M. Hogervorst & Rahul Sangole"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tidy Rabbit basic idea}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+> There are many different modeling functions in R. Some have different syntax for model training and/or prediction. The package started off as a way to provide a uniform interface the functions themselves, as well as a way to standardize common tasks (such parameter tuning and variable importance). --- from the caret book
+
+The R-ecosystem is rich, anybody can bundle their knowledge into a package 
+tat can be used by anyone. The rich documetnaiotn system can be used to describe
+the exact usecases, and how to use the functions. If you want to use someones
+package you can see how and on what way. Individual idiosyncrasies are not a 
+real problem if you use only one package.
+
+However for a datascientist this delvers soem problems, we are often more 
+interested in accuracy and performance. For that usecase we apply multiple 
+transformations on a datasets and we try several machine learning models,
+and then we select one or several of those for further work.
+
+In that case we need to learn all of varying ways packages ingest data and
+specify models. There must be a better way. 
+
+## The caret package 
+The Caret ( _C_lassification _A_nd _RE_gression _T_raining) package by Max Kuhn is a way to unify all  those pakages. 
+This package presents a unified interface for all packages. You can easily
+swap out a decision tree for a logistic regression or other model. It 
+unifies those packages while making use of their authors hard work.
+
+The caret abstraction layer creates (just as other R packages) objects for transformations and predictions. These artefacts are very useful if you want to 
+apply the same action on new data. However, if you create multiple models 
+it starts to get quite hard to keep track of all the artefacts. 
+Transformations of data, predict objects, etcetera.
+One reason is my bad habbit of giving meaningless names to objects, and
+second because the number of objects keep growing. 
+
+Data science projects, as other projects, are often exploratory and iterative.
+You try and repeat, while often forgetting to delete the useless artefacts.
+
+## Tidyverse
+Many people in the R world, including many novices, are now relying on the 
+tidyverse. The tidyverse is an opinionated collection of R packages designed 
+for data science. All packages share an underlying philosophy and common APIs ^[https://www.tidyverse.org/]. 
+
+The packages in the tidyverse have functions that take a data.frame and 
+return a data.frame. Combined with the pipe operator, originally from the 
+magrittr package, it is now possible to write very clear code that reads in
+the same order as it is executed and allows you to apply multiple steps
+without the need to save intermediate results. I cannot stress enough how much
+this changes the way we do data analysis with these tools.
+
+### Data.frames
+The main object for many tidyverse packages is the data.frame. A data.frame is
+a rectangular object where, according to tidy principles, every row is used for 
+an observation and every columns reflects a measurement. But most importantly,
+you keep the things that are related together.  Every column in one
+data.frame has the same length and every item in one column needs to be of the
+same type (numeric, character, factor, or list). Although not used that much
+a list column is incredibly handy. A list column itself does not care what you put
+into it, as long as the total length of the list is the same as the other columns
+in a data.frame. Anything that is not a character, factor, or numeric can thus
+be placed inside a list. 
+
+Anything. Including other data.frames.
+
+# Tidy rabbit
+
+The tidy rabbit package takes many of the artefacts that are created
+by the caret package and eats them, putting these artefacts inside data frames.
+That way we keep the related artefacts together.
+
+* preProcessing objects, the resulting data and their names
+* models, parameters and their names
+* result-objects and the preprocessing and model steps that build them
+
+It allows you to have a clean workspace, a easy way to inspect the steps
+leading to a result and an easy way to compare models.
+
+
